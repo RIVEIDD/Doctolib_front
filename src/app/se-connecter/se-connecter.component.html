@@ -1,9 +1,11 @@
 <div class="container">
     <h1>Inscrivez-vous ou connectez-vous</h1>
     <div class="se_connecter">
-        <h2>J'ai déja un compte Doctolib</h2>
-        <button class="btn-connexion">Inscription</button>
-        <h2>Inscription</h2>
-        <button class="btn-inscription">Connexion</button>
+      <h2>J'ai déjà un compte Doctolib</h2>
+      <button class="btn-connexion" (click)="goToConnexion()">Connexion</button> <!-- Ouvre la page connexion -->
+      
+      <h2>Inscription</h2>
+      <button class="btn-inscription" (click)="goToInscription()">Inscription</button> <!-- Ouvre la page inscription -->
     </div>
-</div>
+  </div>
+  
