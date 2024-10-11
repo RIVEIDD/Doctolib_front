@@ -1,0 +1,49 @@
+.sbottom {
+    display: flex-wrap; // Utilise flexbox pour l'alignement
+    flex-direction: column; // Arrange les éléments en colonne
+    align-items: center; // Centre les éléments horizontalement
+    padding: 20px; // Ajoute du rembourrage autour du conteneur
+    background-color: white; // Couleur de fond pour le conteneur
+    height: 100vh; // Prend toute la hauteur de la fenêtre
+    overflow-y:scroll; // Permet le défilement vertical
+    padding-top: 50px; // Ajuste l'espace en haut pour éviter que le contenu ne soit masqué par l'en-tête
+
+    h1 {
+        text-align: center; // Centre le titre
+        color: black; // Couleur du texte
+        margin-bottom: 20px; // Réduit l'espace sous le titre
+    }
+
+    .bottom-items {
+        display: flex; // Utilise flexbox pour l'alignement des items
+        justify-content: space-around; // Espace uniforme entre les éléments
+        width: 100%; // Prend toute la largeur disponible
+        margin-bottom: 20px; // Espace sous les images
+
+        .bottom-item {
+            text-align: center; // Centre le texte dans chaque zone
+            flex: 1; // Permet à chaque zone de prendre une largeur égale
+            margin: 0 10px; // Espace entre les zones
+            color: black; // Couleur du texte
+        }
+
+        .bottom-image {
+            width: 100px; // Ajustez la taille de l'image selon vos besoins
+            height: auto; // Maintient le ratio d'aspect
+            margin-bottom: 10px; // Espace entre l'image et le texte
+        }
+    }
+
+    .additional-items {
+        display: flex; // Utilise flexbox pour l'alignement des textes supplémentaires
+        justify-content: space-around; // Espace uniforme entre les éléments
+        width: 100%; // Prend toute la largeur disponible
+
+        .additional-item {
+            text-align: center; // Centre le texte dans chaque zone
+            flex: 1; // Permet à chaque zone de prendre une largeur égale
+            margin: 0 10px; // Espace entre les zones
+            color: black; // Couleur du texte
+        }
+    }
+}

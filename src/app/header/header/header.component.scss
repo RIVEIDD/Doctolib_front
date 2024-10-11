@@ -1,0 +1,87 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(14,122,202);
+  height: 65px;
+
+  .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    gap: 1rem;
+
+    .logo {
+      height: 20px;
+      cursor: pointer;
+    }
+
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding-right: 3rem;
+    align-items: center;
+  
+    .button {
+      text-decoration: inherit;
+      height: fit-content;
+      padding: 0.5rem;
+
+  
+      &.b-1 {
+        color: white;
+        border : none;
+      }
+      &.b-2 {
+        background-color: white;
+        color: black;
+        border-radius: 20px;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      }
+      &.b-3 {
+        color: white;
+        border : none;
+
+      }
+    }
+  
+    // Style pour le texte "Gérer mes RDV"
+    .manage-appointments {
+      opacity: 0.7;
+      font-size: 12px;
+      color: white;
+      margin-top: 100px; // Ajustez la marge ici pour un meilleur espacement
+    }
+  }
+  
+
+  .profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2rem;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: rgb(221, 221, 221);
+    cursor: pointer;
+  }
+}
+
+.help-center {
+  position: absolute; /* Positionner de manière absolue */
+  background-color: white; /* Couleur de fond */
+  border: 1px solid #ccc; /* Bordure */
+  border-radius: 8px; /* Coins arrondis */
+  padding: 10px; /* Espacement intérieur */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre */
+  z-index: 10; /* S'assurer que le rectangle est au-dessus des autres éléments */
+  top: 50px; /* Ajustez la position selon vos besoins */
+  left: 650px; /* Ajustez la position selon vos besoins */
+  height: 175px;
+  width: 625px
+}

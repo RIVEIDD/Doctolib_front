@@ -1,0 +1,60 @@
+html, body {
+    height: 100%; /* S'assurer que le corps prend toute la hauteur */
+    margin: 0; /* Supprimer les marges par défaut */
+}
+
+.container {
+    display: flex; /* Utiliser Flexbox */
+    flex-direction: column; /* Aligner les éléments verticalement */
+    justify-content: center; /* Centrer horizontalement */
+    align-items: center; /* Centrer verticalement */
+    height: 100vh; /* Hauteur de la fenêtre */
+    background-color: #f1f7feff;
+}
+
+h1 {
+    font-size: 24px; /* Taille du texte du titre principal */
+    margin-bottom: 20px; /* Espace entre le titre et la section de connexion */
+    text-align: center; /* Centrer le titre */
+}
+
+.se_connecter {
+    border: 1px solid #ccc; /* Bordure du rectangle */
+    border-radius: 8px; /* Arrondir les coins */
+    padding: 20px; /* Espace intérieur */
+    width: 300px; /* Largeur du rectangle */
+    text-align: center; /* Centrer le texte */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    background-color: white; /* Couleur de fond */
+}
+
+h2 {
+    margin: 15px 0; /* Espace entre les titres */
+    font-size: 20px; /* Taille du texte */
+}
+
+.btn-connexion, .btn-inscription {
+    border: none; /* Supprimer la bordure par défaut */
+    padding: 10px 15px; /* Espacement intérieur */
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer; /* Curseur en forme de main au survol */
+    margin: 10px 0; /* Espace vertical entre les boutons */
+}
+
+.btn-connexion {
+    background-color: #007bff; /* Couleur de fond du bouton de connexion */
+    color: white; /* Couleur du texte du bouton */
+}
+
+.btn-inscription {
+    background-color: #ffcd4eff; /* Couleur de fond du bouton d'inscription */
+    color: white; /* Couleur du texte du bouton */
+}
+
+.btn-connexion:hover {
+    background-color: #0056b3; /* Couleur de fond au survol pour le bouton de connexion */
+}
+
+.btn-inscription:hover {
+    background-color: #ffb24d; /* Couleur de fond au survol pour le bouton d'inscription */
+}
