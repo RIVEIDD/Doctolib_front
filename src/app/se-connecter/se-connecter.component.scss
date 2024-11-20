@@ -44,11 +44,15 @@ h2 {
 .btn-connexion {
     background-color: #ffb24d; /* Couleur de fond du bouton de connexion */
     color: white; /* Couleur du texte du bouton */
+    height: 40px;
+    width: 300px
 }
 
 .btn-inscription {
     background-color: #0056b3; /* Couleur de fond du bouton d'inscription */
     color: white; /* Couleur du texte du bouton */
+    height: 40px;
+    width: 300px
 }
 
 .btn-connexion:hover {
