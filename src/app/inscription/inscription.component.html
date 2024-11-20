@@ -7,17 +7,12 @@
   }
 
   
-  
-  <!-- Barre de progression -->
-  <div class="progress-bar">
-    <div class="progress" [style.width]="(stepInscription / 4) * 100 + '%'"></div>
-  </div>
-
   <form
     [formGroup]="inscriptionForm"
     class="inscription-form"
     (submit)="inscription()"
   >
+  <button (click)="backStep()">Précédent</button>
     <div *ngIf="stepInscription === 1">
       <input
         [ngClass]="{ invalid: isInvalidField('email') }"
@@ -25,8 +20,6 @@
         type="email"
         formControlName="email"
       />
-      <button (click)="nextStep()">Continuer</button>
-      <button (click)="backStep()">Précédent</button>
     </div>
 
     <div *ngIf="stepInscription === 2">
@@ -48,8 +41,6 @@
         type="text"
         formControlName="birthDate"
       />
-      <button (click)="nextStep()">Continuer</button>
-      <button (click)="backStep()">Précédent</button>
     </div>
 
     <div *ngIf="stepInscription === 3">
@@ -59,9 +50,12 @@
         type="password"
         formControlName="password"
       />
-      <button (click)="nextStep()">Continuer</button>
-      <button (click)="backStep()">Précédent</button>
+      
     </div>
+    <div class="progress-bar">
+      <div class="progress" [style.width]="(stepInscription / 4) * 100 + '%'"></div>
+    </div>
+    <button (click)="nextStep()">Continuer</button>
       <!-- <input 
       type="checkbox" 
       id="acceptTerms"
