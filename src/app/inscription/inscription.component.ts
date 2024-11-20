@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../types/user.interface';
+import { FormsModule } from '@angular/forms';
 import {
   catchError,
   debounceTime,
@@ -29,12 +30,17 @@ import { SuccessService } from '../services/success.service';
 @Component({
   selector: 'app-inscription',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, CommonModule],
+  imports: [ReactiveFormsModule, RouterLink, CommonModule, FormsModule],
   templateUrl: './inscription.component.html',
   styleUrl: './inscription.component.scss',
   animations: [slideFromTop],
 })
 export class InscriptionComponent {
+
+  public stepInscription: number= 1;
+
+  public acceptTerms: boolean = false;
+
   public inscriptionForm: FormGroup;
 
   public chargementEnCours: boolean = false;
@@ -93,4 +99,22 @@ export class InscriptionComponent {
   public getUsers$(): Observable<User[]> {
     return this.userService.getUsers();
   }
+
+  public nextStep(): void {
+    console.log('Étape actuelle :', this.stepInscription);
+    this.stepInscription++;
+  }
+
+  public backStep(): void {
+    console.log('Étape actuelle :', this.stepInscription);
+    this.stepInscription--;
+  }
+
+  onTermsChange() {
+    
+    this.acceptTerms = !this.acceptTerms;
+    console.log('Accept Terms:', this.acceptTerms);
+  }
 }
+
+
