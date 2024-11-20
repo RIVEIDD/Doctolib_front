@@ -84,4 +84,48 @@
   left: 650px; /* Ajustez la position selon vos besoins */
   height: 175px;
   width: 625px
+  // display: flex; /* Utilisation de Flexbox pour aligner l'icône et le texte */
+  // align-items: center; /* Centre verticalement l'icône et le texte */
+}
+.help-title {
+  display: inline-block; /* Le texte à côté de l'icône */
+  margin: 0; /* Supprimer la marge par défaut */
+  font-weight: bold; /* Texte en gras */
+  font-size: 13px; /* Taille du texte (tu peux ajuster selon tes besoins) */
+  
+}
+
+.help-icon {
+  width: 16px; /* Ajuste la taille de l'image */
+  height: 16px;
+  margin-right: 5px; /* Espace entre l'icône et le texte */
+  margin-left: 3px;
+  
+}
+.help-links{
+  //display: inline-block; /* Le texte à côté de l'icône */
+  margin: 5; /* Supprimer la marge par défaut */
+  //font-weight:normal ; /* Texte en gras */
+  font-size: 13px; /* Taille du texte (tu peux ajuster selon tes besoins) */
+  margin-bottom: 10px;
+  margin-top: 10px;
+  line-height: 2;
+  //text-decoration: none !important; /* Supprime le soulignement */
+  //color: #000 !important; /* Utilise la même couleur que le texte parent */
+  list-style-type: none;
+}
+.help-open-link{
+  width: 16px; /* Ajuste la taille de l'image */
+  height: 16px;
+  margin-left: 5px; /* Espace entre l'icône et le texte */
+  vertical-align: middle;
+}
+.premier_para{
+  text-decoration: inherit;
+  color: black;
+}
+.deuxieme_para{
+  margin-left: 10px;
+  text-decoration: none;
+  color:rgb(41, 109, 204);
 }
