@@ -12,15 +12,34 @@
     class="inscription-form"
     (submit)="inscription()"
   >
-  <button (click)="backStep()">Précédent</button>
-    <div *ngIf="stepInscription === 1">
+  <button class="back-button" (click)="backStep()">
+    <i class="fa fa-arrow-left"></i>&nbsp;Étape précédente
+  </button>
+  
+  <div *ngIf="stepInscription === 1">
+    <p>Saisissez votre adresse email ou votre numéro de téléphone</p>
+    <div class="input-container">
       <input
-        [ngClass]="{ invalid: isInvalidField('email') }"
+        [ngClass]="{ invalid: isEmailInvalid(), valid: isEmailValid() }"
         placeholder="Email"
         type="email"
         formControlName="email"
       />
+      <div class="status-indicator" [ngClass]="{ 'invalid-status': isEmailInvalid(), 'valid-status': isEmailValid() }">
+        <i *ngIf="isEmailInvalid()" class="fas fa-times"></i> <!-- Crois rouge -->
+        <i *ngIf="isEmailValid()" class="fas fa-check"></i>  <!-- Coche verte -->
+      </div>
     </div>
+    <p *ngIf="emailControl?.hasError('required') && emailControl?.touched" class="error">
+      L'email est requis.
+    </p>
+    <p *ngIf="emailControl?.hasError('email') && emailControl?.touched" class="error">
+      L'email n'est pas valide.
+    </p>
+  </div>
+  
+  
+  
 
     <div *ngIf="stepInscription === 2">
       <input

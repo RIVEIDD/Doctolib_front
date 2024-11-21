@@ -36,17 +36,12 @@ import { SuccessService } from '../services/success.service';
   animations: [slideFromTop],
 })
 export class InscriptionComponent {
-
-  public stepInscription: number= 1;
-
+  // Vos propriétés actuelles
+  public stepInscription: number = 1;
   public acceptTerms: boolean = false;
-
   public inscriptionForm: FormGroup;
-
   public chargementEnCours: boolean = false;
-
   public inscriptionError: Error;
-
   public allUsers: User[] = [];
 
   constructor(
@@ -58,10 +53,27 @@ export class InscriptionComponent {
     this.inscriptionForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email]], // Champ email avec validation
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
+
+  get emailControl(): AbstractControl | null {
+    return this.inscriptionForm.get('email');
+  }
+  
+  public isEmailInvalid(): boolean {
+    const emailControl = this.inscriptionForm.get('email');
+    return emailControl?.invalid && emailControl?.touched ? true : false;
+  }
+  
+  public isEmailValid(): boolean {
+    const emailControl = this.inscriptionForm.get('email');
+    return emailControl?.valid && emailControl?.touched ? true : false;
+  }
+  
+  
+  
 
   public isInvalidField(formControlName: string): boolean {
     const field = this.inscriptionForm.get(formControlName);
@@ -105,13 +117,18 @@ export class InscriptionComponent {
     this.stepInscription++;
   }
 
-  public backStep(): void {
-    console.log('Étape actuelle :', this.stepInscription);
-    this.stepInscription--;
+  // Méthode pour gérer l'étape précédente
+  backStep() {
+    if (this.stepInscription === 1) {
+      // Si on est à l'étape 1, rediriger vers la page de connexion
+      this.router.navigate(['/se_connecter']); // Remplacez '/se_connecter' par le chemin réel de votre page de connexion
+    } else {
+      // Si on n'est pas à l'étape 1, simplement réduire l'étape
+      this.stepInscription--;
+    }
   }
 
-  onTermsChange() {
-    
+  public onTermsChange(): void {
     this.acceptTerms = !this.acceptTerms;
     console.log('Accept Terms:', this.acceptTerms);
   }

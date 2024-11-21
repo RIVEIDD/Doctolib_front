@@ -9,17 +9,17 @@
   gap: 1rem;
 
   .progress-bar {
-    width: 100%; /* Réduit la longueur à 80% du conteneur parent */
-    background-color: #f3f3f3; /* Couleur de fond de la barre */
+    width: 100%;
+    background-color: #f3f3f3;
     border-radius: 5px;
-    margin-bottom: 20px; /* Espace entre la barre et le formulaire */
+    margin-bottom: 20px;
   }
-  
+
   .progress {
-    height: 10px; /* Hauteur de la barre de progression */
-    background-color: #4caf50; /* Couleur de la progression */
+    height: 10px;
+    background-color: #4caf50;
     border-radius: 5px;
-    transition: width 0.3s ease; /* Animation pour l'effet de progression */
+    transition: width 0.3s ease;
   }
 
   .inscription-form {
@@ -38,23 +38,69 @@
       margin-bottom: 1rem;
     }
 
+    .input-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
     input {
       padding: 0.8rem;
       border: 1px solid #ccc;
       border-radius: 5px;
       font-size: 1rem;
+      width: 100%; /* Occupe toute la largeur */
+      transition: border-color 0.3s ease;
+    }
+
+    input.invalid {
+      border-color: red; /* Bordure rouge pour les champs invalides */
+    }
+
+    input.valid {
+      border-color: green; /* Bordure verte pour les champs valides */
+    }
+
+    .status-indicator {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: transparent;
+    }
+
+    .invalid-status {
+      background-color: red; /* Fond rouge pour l'état invalide */
+      color: white;
+    }
+
+    .valid-status {
+      background-color: green; /* Fond vert pour l'état valide */
+      color: white;
+    }
+
+    .status-indicator i {
+      font-size: 12px;
     }
 
     .back-button {
       align-self: flex-start;
       padding: 0.5rem 1rem;
-      background-color: #e0e0e0;
+      background-color: transparent;
       border: none;
-      border-radius: 5px;
       cursor: pointer;
-
+      color: #555;
+      font-size: 1rem;
+      transition: background-color 0.3s ease; /* Transition ajoutée pour l'effet de survol */
+      
       &:hover {
-        background-color: #d6d6d6;
+        background-color: rgba(0, 0, 0, 0.1); /* Fond légèrement grisé au survol */
       }
     }
 
@@ -70,6 +116,12 @@
       &:hover {
         background-color: #45a049;
       }
+    }
+
+    .error {
+      color: red;
+      font-size: 0.875rem;
+      margin-top: -0.5rem;
     }
   }
 }
