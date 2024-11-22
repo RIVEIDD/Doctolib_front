@@ -24,11 +24,11 @@ span {
   font-weight: 300; /* Texte plus léger pour les paragraphes */
 }
 input {
-  height: 2.5rem;
-  border: none;
-  background-color: rgb(239, 239, 239);
-  border-radius: 8px;
-  padding-inline: 1rem;
+  // height: 2.5rem;
+  // border: none;
+  // background-color: rgb(239, 239, 239);
+  // border-radius: 8px;
+  // padding-inline: 1rem;
 
   &.invalid {
     border: 2px solid red;

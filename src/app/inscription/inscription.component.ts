@@ -55,7 +55,29 @@ export class InscriptionComponent {
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]], // Champ email avec validation
       password: ['', [Validators.required, Validators.minLength(6)]],
+      birthDate: ['', [Validators.required, this.dateValidator()]],
     });
+  }
+
+  // Validation de la date (format jj/mm/aaaa)
+  dateValidator() {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const value = control.value;
+      const dateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+      return dateRegex.test(value) ? null : { invalidDate: true };
+    };
+  }
+
+  // Formate la date au fur et à mesure que l'utilisateur saisit
+  formatBirthDate(event: any): void {
+    let input = event.target.value.replace(/\D/g, ''); // Supprime tout ce qui n'est pas un chiffre
+    if (input.length > 2) {
+      input = input.slice(0, 2) + '/' + input.slice(2);
+    }
+    if (input.length > 5) {
+      input = input.slice(0, 5) + '/' + input.slice(5);
+    }
+    event.target.value = input.slice(0, 10); // Limite la longueur de la saisie à 10 caractères
   }
 
   get emailControl(): AbstractControl | null {
@@ -135,6 +157,9 @@ export class InscriptionComponent {
     this.acceptTerms = !this.acceptTerms;
     console.log('Accept Terms:', this.acceptTerms);
   }
+  
+  
+
 }
 
 

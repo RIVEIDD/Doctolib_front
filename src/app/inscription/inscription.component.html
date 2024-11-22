@@ -43,11 +43,11 @@
 
     <div *ngIf="stepInscription === 2">
       <div class="gender-selection">
-        <label>
+        <label class="gender-option">
           <input type="radio" name="gender" [value]="'Homme'" formControlName="gender" />
           <span class="gender-button homme">Homme</span>
         </label>
-        <label>
+        <label class="gender-option">
           <input type="radio" name="gender" [value]="'Femme'" formControlName="gender" />
           <span class="gender-button femme">Femme</span>
         </label>
@@ -66,9 +66,11 @@
       />
       <input
         [ngClass]=""
-        placeholder="Date de naissance"
+        placeholder="jj/mm/aaaa"
+        maxlength="10" 
         type="text"
         formControlName="birthDate"
+        (input)="formatBirthDate($event)"
       />
     </div>
 
