@@ -114,7 +114,10 @@ export class InscriptionComponent {
 
   public nextStep(): void {
     console.log('Étape actuelle :', this.stepInscription);
-    this.stepInscription++;
+
+    if (this.stepInscription < 4) {
+      this.stepInscription++;
+    }
   }
 
   // Méthode pour gérer l'étape précédente

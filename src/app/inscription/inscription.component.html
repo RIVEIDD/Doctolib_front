@@ -42,6 +42,16 @@
   
 
     <div *ngIf="stepInscription === 2">
+      <div class="gender-selection">
+        <label>
+          <input type="radio" name="gender" [value]="'Homme'" formControlName="gender" />
+          <span class="gender-button homme">Homme</span>
+        </label>
+        <label>
+          <input type="radio" name="gender" [value]="'Femme'" formControlName="gender" />
+          <span class="gender-button femme">Femme</span>
+        </label>
+      </div>
       <input
         [ngClass]="{ invalid: isInvalidField('firstName') }"
         placeholder="Prénom"
