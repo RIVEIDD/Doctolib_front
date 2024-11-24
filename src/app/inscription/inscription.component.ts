@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../types/user.interface';
 import { FormsModule } from '@angular/forms';
@@ -51,14 +51,28 @@ export class InscriptionComponent {
     private successService: SuccessService
   ) {
     this.inscriptionForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      firstName: ['', [Validators.required, this.customDotValidator()]],
+      lastName: ['', [Validators.required, this.customDotValidator()]],
       email: ['', [Validators.required, Validators.email]], // Champ email avec validation
       password: ['', [Validators.required, Validators.minLength(6)]],
       birthDate: ['', [Validators.required, this.dateValidator()]],
     });
   }
-
+  // Méthode du validateur personnalisé
+  customDotValidator() {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      if (!control.touched) {
+        return null; // Pas encore touché, ne validez pas
+      }
+      const value = control.value;
+      // Vérifie si le texte contient des caractères interdits
+      const forbiddenPattern = /[0-9./]/; // Chiffres, points et slashes
+      if (value && forbiddenPattern.test(value)) {
+        return { forbiddenCharacters: 'Le texte contient des caractères interdits.' };
+      }
+      return null; // Aucun problème
+    };
+  }
   // Validation de la date (format jj/mm/aaaa)
   dateValidator() {
     return (control: AbstractControl): { [key: string]: any } | null => {
@@ -100,6 +114,11 @@ export class InscriptionComponent {
   public isInvalidField(formControlName: string): boolean {
     const field = this.inscriptionForm.get(formControlName);
     return (field?.invalid && field?.touched) ?? true;
+  }
+
+  public isValidField(formControlName: string): boolean {
+    const field = this.inscriptionForm.get(formControlName);
+    return (field?.valid && field?.touched) ?? true;
   }
 
   public inscription(): void {

@@ -18,7 +18,7 @@
   
   <div *ngIf="stepInscription === 1">
     <p>Saisissez votre adresse email ou votre numéro de téléphone</p>
-    <div class="input-container">
+    <div class="input-container_mail">
       <input
         [ngClass]="{ invalid: isEmailInvalid(), valid: isEmailValid() }"
         placeholder="Email"
@@ -52,27 +52,47 @@
           <span class="gender-button femme">Femme</span>
         </label>
       </div>
-      <input
-        [ngClass]="{ invalid: isInvalidField('firstName') }"
-        placeholder="Prénom"
-        type="text"
-        formControlName="firstName"
-      />
-      <input
-        [ngClass]="{ invalid: isInvalidField('lastName') }"
-        placeholder="Nom"
-        type="text"
-        formControlName="lastName"
-      />
-      <input
-        [ngClass]=""
-        placeholder="jj/mm/aaaa"
-        maxlength="10" 
-        type="text"
-        formControlName="birthDate"
-        (input)="formatBirthDate($event)"
-      />
+      <div class="input-container_text">
+        <div class="input-wrapper">
+          <input
+            [ngClass]="{ invalid: isInvalidField('firstName'), valid: isValidField('firstName') }"
+            placeholder="Prénom"
+            type="text"
+            formControlName="firstName"
+          />
+          <div class="status-indicator" [ngClass]="{ 'invalid-status': isInvalidField('firstName'), 'valid-status': isValidField('firstName') }">
+            <i *ngIf="isInvalidField('firstName')" class="fas fa-times"></i> <!-- Crois rouge -->
+            <i *ngIf="isValidField('firstName')" class="fas fa-check"></i>  <!-- Coche verte -->
+          </div>
+        </div>
+
+        <div class="input-wrapper">
+          <input
+            [ngClass]="{ invalid: isInvalidField('lastName'), valid: isValidField('lastName') }"
+            placeholder="Nom"
+            type="text"
+            formControlName="lastName"
+          />
+          <div class="status-indicator" [ngClass]="{ 'invalid-status': isInvalidField('lastName'), 'valid-status': isValidField('lastName') }">
+            <i *ngIf="isInvalidField('lastName')" class="fas fa-times"></i> <!-- Crois rouge -->
+            <i *ngIf="isValidField('lastName')" class="fas fa-check"></i>  <!-- Coche verte -->
+          </div>
+        </div>
+        
+        <div class="input-wrapper">
+          <input
+            [ngClass]=""
+            placeholder="jj/mm/aaaa"
+            maxlength="10" 
+            type="text"
+            formControlName="birthDate"
+            (input)="formatBirthDate($event)"
+          />
+        </div>
+      </div>
     </div>
+
+
 
     <div *ngIf="stepInscription === 3">
       <input

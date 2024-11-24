@@ -38,23 +38,37 @@
       margin-bottom: 1rem;
     }
 
-    .input-container {
+    .input-container_mail {
       position: relative;
       display: flex;
       align-items: center;
+    }
+    .input-container_text {
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
     }
 
     // Séparer les styles pour input texte
     input[type="text"],
     input[type="email"],
     input[type="password"] {
-      margin-bottom: 1.2rem; // Espace sous les boutons radio
+      margin-bottom: 1.2rem; // Espace sous les zones
       padding: 0.8rem;
       border: 1px solid #ccc;
       border-radius: 5px;
       font-size: 1rem;
-      width: 95%; /* Occupe presque toute la largeur */
+      width: 100%; /* Occupe presque toute la largeur */
       transition: border-color 0.3s ease;
+      position: relative;
+    }
+
+    .input-wrapper {
+      position: relative;  /* Pour que la pastille soit positionnée par rapport à l'input */
+      display: flex;
+      align-items: center;
+      width: 100%;
     }
 
     input.invalid {
@@ -77,6 +91,7 @@
       justify-content: center;
       align-items: center;
       background-color: transparent;
+      right: 10px;
     }
 
     .invalid-status {
