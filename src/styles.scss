@@ -1,7 +1,8 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: "poppins", sans-serif; /* Appliquer la police Roboto à toute l'application */
+  font-family: "Poppins", sans-serif;
+  /* Applique la police Poppins à toute l'application */
 }
 
 .column {
@@ -16,19 +17,27 @@
 h1,
 h2,
 h3 {
-  font-weight: 500; /* Texte plus épais pour les titres */
+  font-weight: 500;
+  /* Texte plus épais pour les titres */
+  color: #424242;
+  /* Couleur texte */
 }
 
 p,
 span {
-  font-weight: 300; /* Texte plus léger pour les paragraphes */
+  font-weight: 300;
+  /* Texte plus léger pour les paragraphes */
+  color: #333;
+  /* Couleur gris foncé pour une meilleure lisibilité */
 }
+
 input {
-  // height: 2.5rem;
-  // border: none;
-  // background-color: rgb(239, 239, 239);
-  // border-radius: 8px;
-  // padding-inline: 1rem;
+  height: 2.5rem;
+  border: 2px solid rgb(116, 110, 110);
+  border-radius: 5px;
+  /* Couleur de fond claire pour le champ */
+  /* Légère ombre pour l'effet de profondeur */
+  outline: none;
 
   &.invalid {
     border: 2px solid red;
@@ -38,10 +47,12 @@ input {
 select {
   height: 2.5rem;
   border: none;
-  background-color: rgb(239, 239, 239);
+  background-color: #f5f5f5;
   border-radius: 8px;
   padding-inline: 1rem;
   cursor: pointer;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  /* Même ombre pour la cohérence */
 }
 
 button {
@@ -50,18 +61,24 @@ button {
   border-radius: 8px;
   cursor: pointer;
   transition: 0.2s;
-  padding: 1rem;
   display: flex;
   align-items: center;
+  padding: 1rem;
   justify-content: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  /* Ajout d'ombre pour plus de relief */
 
   &.btn-1 {
-    background-color: black;
+    background-color: #4a90e2;
     color: white;
+    font-size: 1em;
+    /* Approximativement la taille d'un h3 */
   }
+
   &.btn-2 {
     background-color: white;
-    color: black;
+    color: #4a90e2;
+    border: 2px solid #4a90e2;
   }
 
   &:hover {
@@ -70,8 +87,10 @@ button {
 }
 
 .loader {
-  border: 4px solid #f3f3f3; /* Light gray */
-  border-top: 4px solid #3498db; /* Blue */
+  border: 4px solid #f3f3f3;
+  /* Gris clair */
+  border-top: 4px solid #3498db;
+  /* Bleu pour l'animation */
   border-radius: 50%;
   width: 20px;
   height: 20px;
@@ -82,6 +101,7 @@ button {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -90,22 +110,23 @@ button {
 .warning-box {
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
-  width: 20%;
   padding: 1rem;
-  color: white;
+  color: inherit;
 
-  &.succes {
-    background-color: rgb(77, 147, 77);
+  &.success {
+    color: rgb(77, 147, 77);
   }
+
   &.error {
-    background-color: rgb(239, 72, 72);
+    color: rgb(239, 72, 72);
   }
 }
 
 $i: 0;
+
 @while $i < 100 {
   $i: $i + 1;
+
   .gap-#{$i} {
     gap: #{$i}#{"rem"};
   }
@@ -144,6 +165,7 @@ $i: 0;
     align-items: center;
     cursor: pointer;
     height: 100%;
+
     img {
       height: 7px;
     }

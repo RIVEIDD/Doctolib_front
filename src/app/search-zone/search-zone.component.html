@@ -1,18 +1,56 @@
+<!--
+<div>
+  <input
+    type="text"
+    [(ngModel)]="searchUser"
+    placeholder="Rechercher par firstNname"
+  />
+  <button (click)="searchUser()">Rechercher</button>
+</div>
+
+<div *ngIf="searchedUser">
+  <h3>Résultat de la recherche :</h3>
+  <p>ID : {{ searchedUser.id }}</p>
+  <p>Nom d'utilisateur : {{ searchedUser.firstName }}</p>
+</div>
+
+-->
+
+
+
 <div class="searchzone">
-    <img src="/assets/ba6eda4b0cc3e6b3632d.webp" alt="" class="image"/>
-    <h1>Vivez en meilleure santé</h1>
-    <div class="search-bar">
-      <div class="input-container">
-        <i class="fa fa-search"></i>
-        <input type="text" placeholder="Nom, spécialité, établissement..." />
-      </div>
-      <div class="input-container">
-        <i class="fa fa-map-marker"></i>
-        <input type="text" placeholder="Où ?" />
-      </div>
-      <button class="search-button">
-        <i class="fa fa-paper-plane"></i> Rechercher
-      </button>
+  <img src="/assets/ba6eda4b0cc3e6b3632d.webp" alt="" class="image" />
+  <h1>Vivez en meilleure santé</h1>
+  <div class="search-bar">
+    <div class="input-container">
+      <i class="fa fa-search"></i>
+      <input
+        type="text"
+        placeholder="Nom, spécialité, établissement..."
+        [(ngModel)]="specialty"
+      />
     </div>
+    <div class="input-container">
+      <i class="fa fa-map-marker"></i>
+      <input type="text" placeholder="Où ?" [(ngModel)]="city" />
+    </div>
+    <button class="search-button" (click)="searchDoctors()">
+      <i class="fa fa-paper-plane"></i> Rechercher
+    </button>
   </div>
-  
+</div>
+
+
+<div *ngIf="doctors.length > 0" class="results">
+  <h2>Résultats :</h2>
+  <ul>
+    <li *ngFor="let doctor of doctors">
+      <strong>{{ doctor.firstName }} {{ doctor.lastName }}</strong> - 
+      {{ doctor.specialty }} à {{ doctor.city }}
+    </li>
+  </ul>
+</div>
+<div *ngIf="doctors.length === 0" class="no-results">
+  <p>Aucun médecin trouvé pour votre recherche.</p>
+</div>
+

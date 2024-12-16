@@ -1,117 +1,201 @@
+<p>inscription works!</p>
+
 <div class="inscription-container">
-  @if (inscriptionError) {
-    <div @slideFromTop class="warning-box error">
-      <h3>Une erreur est survenue ...</h3>
-      <p>{{ inscriptionError.message }}</p>
-    </div>
-  }
-
-  
-  <form
-    [formGroup]="inscriptionForm"
-    class="inscription-form"
-    (submit)="inscription()"
-  >
-  <button class="back-button" (click)="backStep()">
-    <i class="fa fa-arrow-left"></i>&nbsp;Étape précédente
-  </button>
-  
-  <div *ngIf="stepInscription === 1">
-    <p>Saisissez votre adresse email ou votre numéro de téléphone</p>
-    <div class="input-container">
-      <input
-        [ngClass]="{ invalid: isEmailInvalid(), valid: isEmailValid() }"
-        placeholder="Email"
-        type="email"
-        formControlName="email"
-      />
-      <div class="status-indicator" [ngClass]="{ 'invalid-status': isEmailInvalid(), 'valid-status': isEmailValid() }">
-        <i *ngIf="isEmailInvalid()" class="fas fa-times"></i> <!-- Crois rouge -->
-        <i *ngIf="isEmailValid()" class="fas fa-check"></i>  <!-- Coche verte -->
+    @if (inscriptionError) {
+      <div @slideFromTop class="warning-box error">
+        <h3>Une erreur est survenue ...</h3>
+        <p>{{ inscriptionError.message }}</p>
       </div>
+    }
+  
+    
+    <form
+      [formGroup]="inscriptionForm"
+      class="inscription-form"
+      (submit)="inscription()"
+    >
+    <button class="back-button" (click)="backStep()">
+      <i class="fa fa-arrow-left"></i>&nbsp;Étape précédente
+    </button>
+    
+    <div *ngIf="stepInscription === 1">
+      <p>Saisissez votre adresse email ou votre numéro de téléphone</p>
+      <div class="input-container">
+        <input
+          [ngClass]="{ invalid: isEmailInvalid(), valid: isEmailValid() }"
+          placeholder="Email"
+          type="email"
+          formControlName="email"
+        />
+        <div class="status-indicator" [ngClass]="{ 'invalid-status': isEmailInvalid(), 'valid-status': isEmailValid() }">
+          <i *ngIf="isEmailInvalid()" class="fas fa-times"></i> <!-- Crois rouge -->
+          <i *ngIf="isEmailValid()" class="fas fa-check"></i>  <!-- Coche verte -->
+        </div>
+      </div>
+      <p *ngIf="emailControl?.hasError('required') && emailControl?.touched" class="error">
+        L'email est requis.
+      </p>
+      <p *ngIf="emailControl?.hasError('email') && emailControl?.touched" class="error">
+        L'email n'est pas valide.
+      </p>
+      <button (click)="nextStep()">Continuer</button>
     </div>
-    <p *ngIf="emailControl?.hasError('required') && emailControl?.touched" class="error">
-      L'email est requis.
-    </p>
-    <p *ngIf="emailControl?.hasError('email') && emailControl?.touched" class="error">
-      L'email n'est pas valide.
-    </p>
+    
+    
+    
+  
+      <div *ngIf="stepInscription === 2">
+        <div class="gender-selection">
+          <!--<label class="gender-option">
+            <<input type="radio" name="gender" [value]="'Homme'" formControlName="gender" />
+            <span class="gender-button homme">Homme</span>
+          </label>
+          <label class="gender-option">
+            <input type="radio" name="gender" [value]="'Femme'" formControlName="gender" />
+            <span class="gender-button femme">Femme</span>
+          </label>-->
+        </div>
+        <input
+          [ngClass]="{ invalid: isInvalidField('firstName') }"
+          placeholder="Prénom"
+          type="text"
+          formControlName="firstName"
+        />
+        <input
+          [ngClass]="{ invalid: isInvalidField('lastName') }"
+          placeholder="Nom"
+          type="text"
+          formControlName="lastName"
+        />
+        <input
+          [ngClass]=""
+          placeholder="jj/mm/aaaa"
+          maxlength="10" 
+          type="text"
+          formControlName="birthDate"
+          (input)="formatBirthDate($event)"
+        />
+        <button (click)="nextStep()">Continuer</button>
+      </div>
+  
+      <div *ngIf="stepInscription === 3">
+        <input
+          [ngClass]="{ invalid: isInvalidField('password') }"
+          placeholder="Mot de passe"
+          type="password"
+          formControlName="password"
+        />
+        <button type="submit" class="btn-1">
+            <div *ngIf="loading; else notLoading" class="loader"></div>
+            <ng-template #notLoading>
+                <h4 class="btn-1">Sign up</h4>
+            </ng-template>
+        </button>
+      </div>
+      <div class="progress-bar">
+        <div class="progress" [style.width]="(stepInscription / 4) * 100 + '%'"></div>
+      </div>
+      <!--<button (click)="nextStep()">Continuer</button>-->
+        <!-- <input 
+        type="checkbox" 
+        id="acceptTerms"
+        [(ngModel)]="acceptTerms"
+        (change)="onTermsChange()" 
+        required
+      />
+     
+      <p>{{acceptTerms}}</p>
+        <button class="btn-1" type="submit" [disabled]="!acceptTerms">
+          @if (chargementEnCours) {
+            <div class="loader"></div>
+          } @else {
+            <h3>Inscription</h3>
+          }
+        </button>
+        <div class="ou-ligne">
+          <div class="ligne"></div>
+          <p>ou</p>
+          <div class="ligne"></div>
+        </div>
+        <a [routerLink]="['/connexion']">se connecter</a>
+        <button (click)="backStep()">Précédent</button>
+    </form>
   </div>
+  -->
+  
   
   
   
 
-    <div *ngIf="stepInscription === 2">
-      <div class="gender-selection">
-        <label class="gender-option">
-          <input type="radio" name="gender" [value]="'Homme'" formControlName="gender" />
-          <span class="gender-button homme">Homme</span>
-        </label>
-        <label class="gender-option">
-          <input type="radio" name="gender" [value]="'Femme'" formControlName="gender" />
-          <span class="gender-button femme">Femme</span>
-        </label>
-      </div>
-      <input
-        [ngClass]="{ invalid: isInvalidField('firstName') }"
-        placeholder="Prénom"
-        type="text"
-        formControlName="firstName"
-      />
-      <input
-        [ngClass]="{ invalid: isInvalidField('lastName') }"
-        placeholder="Nom"
-        type="text"
-        formControlName="lastName"
-      />
-      <input
-        [ngClass]=""
-        placeholder="jj/mm/aaaa"
-        maxlength="10" 
-        type="text"
-        formControlName="birthDate"
-        (input)="formatBirthDate($event)"
-      />
-    </div>
 
-    <div *ngIf="stepInscription === 3">
-      <input
-        [ngClass]="{ invalid: isInvalidField('password') }"
-        placeholder="Mot de passe"
-        type="password"
-        formControlName="password"
-      />
-      
-    </div>
-    <div class="progress-bar">
-      <div class="progress" [style.width]="(stepInscription / 4) * 100 + '%'"></div>
-    </div>
-    <button (click)="nextStep()">Continuer</button>
-      <!-- <input 
-      type="checkbox" 
-      id="acceptTerms"
-      [(ngModel)]="acceptTerms"
-      (change)="onTermsChange()" 
-      required
-    />
-   
-    <p>{{acceptTerms}}</p>
-      <button class="btn-1" type="submit" [disabled]="!acceptTerms">
-        @if (chargementEnCours) {
-          <div class="loader"></div>
-        } @else {
-          <h3>Inscription</h3>
+
+
+<!--
+<div class="inscription-container">
+
+
+    <form
+        [formGroup]="inscriptionForm"
+        class="inscription-form"
+        (submit)="inscription()"
+    >
+    
+        @if (inscriptionError) {
+            <div @slideFromTop class="warning-box error">
+                <h4>An error occured ...</h4>
+                <h4>{{ inscriptionError.message }}</h4>
+            </div>
         }
-      </button>
-      <div class="ou-ligne">
-        <div class="ligne"></div>
-        <p>ou</p>
-        <div class="ligne"></div>
-      </div>
-      <a [routerLink]="['/connexion']">se connecter</a>
-      <button (click)="backStep()">Précédent</button>
-  </form>
+
+        
+        <div class="input-group">
+            <h3 class="input-name">E-Mail</h3>
+            <input
+                [ngClass]="{ invalid: isInvalidField('email') }"
+                formControlName="email" 
+                type="email" 
+            />
+        </div>
+
+        <div class="input-group">
+            <h3 class="input-name">Password</h3>
+            <input 
+                [ngClass]="{ invalid: isInvalidField('password') }"
+                formControlName="password" 
+                type="password" 
+            />
+        </div>
+
+        <div class="input-group">
+            <h3 class="input-name">First name</h3>
+            <input 
+                [ngClass]="{ invalid : isInvalidField('firstName') }"
+                formControlName="firstName" 
+                type="text" 
+            />
+        </div>
+
+        <div class="input-group">
+            <h3 class="input-name">Last name</h3>
+            <input 
+                [ngClass]="{ invalid : isInvalidField('lastName') }"
+                formControlName="lastName" 
+                type="text" 
+            />
+        </div>
+
+
+        <button type="submit" class="btn-1">
+            <div *ngIf="loading; else notLoading" class="loader"></div>
+            <ng-template #notLoading>
+                <h4 class="btn-1">Sign up</h4>
+            </ng-template>
+        </button>
+
+        <p class="signup-text">
+            Already have an account? <a href="/signin">Sign in</a>
+        </p>
+    </form>
 </div>
+
 -->
-
-

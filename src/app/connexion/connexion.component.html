@@ -1,18 +1,52 @@
 <div class="connexion-container">
-  @if (succesInscription) {
-  <div class="warning-box succes">
-    <h3>Bienvenue {{ succesInscription.name }} !</h3>
-    <p>Vous pouvez dès maintenant vous connecter.</p>
-  </div>
-  }
-  <form [formGroup]="loginForm" class="connexion-form" (submit)="connexion()">
-    <h3>Se connecter</h3>
-    <input formControlName="email" placeholder="Email" type="email" />
-    <input
-      formControlName="password"
-      placeholder="Mot de passe"
-      type="password"
-    />
-    <button type="submit" class="btn-1">Connexion</button>
-  </form>
+    <!-- Formulaire de connexion -->
+    <form [formGroup]="loginForm" class="connexion-form" (submit)="connexion()">
+
+        @if (signupSuccess) {
+        <div @slideFromTop class="warning-box success">
+            <h4>Welcome {{ signupSuccess.name }}, you can now log in!</h4>
+        </div>
+        }
+        <div *ngIf="signinError" @slideFromTop class="warning-box error">
+            <h4>An error occurred...</h4>
+            <h4>{{ signinError.message }}</h4>
+        </div>
+
+        <button class="back-button" (click)="backStep()">
+            <i class="fa fa-arrow-left"></i>&nbsp;Étape précédente
+          </button>
+
+        <div *ngIf="stepInscription === 1">
+
+            <div class="input-group">
+                <h3 class="input-name">Email</h3>
+                <input [ngClass]="{ invalid: isInvalidField('email') }" formControlName="email" type="email" />
+            </div>
+
+            <button (click)="nextStep()">Continuer</button>
+
+        </div>
+
+        <div *ngIf="stepInscription === 2">
+
+            <div class="input-group">
+                <h3 class="input-name">Password</h3>
+                <input [ngClass]="{ invalid: isInvalidField('password') }" formControlName="password" type="password" />
+            </div>
+
+                    <!-- Bouton de connexion -->
+        <button type="submit" class="btn-1">
+            <div *ngIf="loading; else notLoading" class="loader"></div>
+            <ng-template #notLoading>
+                <h4 class="btn-1">Sign in with password</h4>
+            </ng-template>
+        </button>
+
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress" [style.width]="(stepInscription / 4) * 100 + '%'"></div>
+          </div>
+
+    </form>
 </div>

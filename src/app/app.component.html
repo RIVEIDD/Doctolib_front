@@ -1,7 +1,8 @@
 <div class="header">
-  <app-header></app-header>
+  <!-- Afficher le header pour la page d'accueil, de connexion et d'inscription -->
+  <app-header *ngIf="currentRoute === '/' || currentRoute === '/home' || currentRoute === '/connexion' || currentRoute === '/inscription'"></app-header>
+  <app-header-profile *ngIf="currentRoute === '/profile' || currentRoute === '/home-profile'"></app-header-profile>
 </div>
-
 
 <div class="content">
   <router-outlet></router-outlet>

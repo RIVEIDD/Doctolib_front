@@ -1,19 +1,19 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { User } from '../types/user.interface';
 import { delay, Observable } from 'rxjs';
-import { User, userRequest } from '../types/user.interface';
 import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class UserService {
   private apiUrl = `${environment.apiUrl}/users`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   createUser(userData: User): Observable<any> {
-    return this.http.post(this.apiUrl, userData).pipe(delay(1500));
+    return this.http.post(this.apiUrl, userData).pipe(delay(2000));
   }
 
   getUsers(): Observable<User[]> {
@@ -27,6 +27,9 @@ export class UserService {
       },
     });
   }
+  public getMe(): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/profile`);
+  }
 
   updateUser(userData: User): Observable<User> {
     return this.http.patch<User>(`${this.apiUrl}/update`, userData, {
@@ -35,4 +38,9 @@ export class UserService {
       },
     });
   }
+
+    // Méthode pour rechercher un utilisateur par firstName
+    getUserByFirstName(firstName: string): Observable<any> {
+      return this.http.get(`${this.apiUrl}/search/${firstName}`);
+    }
 }

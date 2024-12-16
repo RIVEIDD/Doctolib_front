@@ -1,62 +1,79 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service';
-import { User } from '../types/user.interface';
-import { FormsModule } from '@angular/forms';
-import {
-  catchError,
-  debounceTime,
-  EMPTY,
-  map,
-  Observable,
-  switchMap,
-  take,
-  tap,
-} from 'rxjs';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+import { UserService } from '../services/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { slideFromTop } from '../animations/animations';
-import { InscriptionSuccess } from '../types/inscriptionSuccess.interface';
-import { SuccessService } from '../services/success.service';
+import { catchError, EMPTY, Observable, tap } from 'rxjs';
+import { User } from '../types/user.interface';
+import { SignupSuccess } from '../types/signupSuccess.interface';
+import { SignupSuccessService } from '../services/signupSuccess.service';
+
 
 @Component({
   selector: 'app-inscription',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, CommonModule, FormsModule],
+  imports: [ReactiveFormsModule,FormsModule, RouterLink, CommonModule],
   templateUrl: './inscription.component.html',
   styleUrl: './inscription.component.scss',
-  animations: [slideFromTop],
 })
 export class InscriptionComponent {
-  // Vos propriétés actuelles
-  public stepInscription: number = 1;
-  public acceptTerms: boolean = false;
+  // Attributes
   public inscriptionForm: FormGroup;
-  public chargementEnCours: boolean = false;
-  public inscriptionError: Error;
-  public allUsers: User[] = [];
+  public inscriptionError: Error | undefined;
+  public loading: boolean = false;
+  public stepInscription: number = 1;
 
+  // Constructor
   constructor(
     private userService: UserService,
     private fb: FormBuilder,
     private router: Router,
-    private successService: SuccessService
+    private successService: SignupSuccessService
   ) {
     this.inscriptionForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]], // Champ email avec validation
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      birthDate: ['', [Validators.required, this.dateValidator()]],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      birthDate: ['', [Validators.required]],
     });
+  }
+
+  // Method to check if a field is invalid
+  public isInvalidField(formControlName: string): boolean {
+    const field = this.inscriptionForm.get(formControlName);
+    return (field?.invalid && field?.touched) ?? true;
+  }
+
+  // Method to validate the form and create a user
+  public inscription(): void {
+    this.inscriptionForm.markAllAsTouched();
+    if (this.inscriptionForm.valid) {
+      this.loading = true;
+      this.userService
+        .createUser(this.inscriptionForm.value)
+        .pipe(
+          catchError((error: HttpErrorResponse) => {
+            this.inscriptionError = error.error;
+            this.loading = false;
+            return EMPTY;
+          }),
+          tap((res: Partial<User>) => {
+            if (res) {
+              const signupSuccess: SignupSuccess = {
+                succes: 'Sign up successful',
+                name: this.inscriptionForm.value.firstName,
+                email: this.inscriptionForm.value.email,
+              };
+              this.successService.setSignupData(signupSuccess);
+              this.loading = false;
+              this.router.navigate(['/connexion']);
+            }
+          })
+        )
+        .subscribe();
+    }
   }
 
   // Validation de la date (format jj/mm/aaaa)
@@ -93,46 +110,6 @@ export class InscriptionComponent {
     const emailControl = this.inscriptionForm.get('email');
     return emailControl?.valid && emailControl?.touched ? true : false;
   }
-  
-  
-  
-
-  public isInvalidField(formControlName: string): boolean {
-    const field = this.inscriptionForm.get(formControlName);
-    return (field?.invalid && field?.touched) ?? true;
-  }
-
-  public inscription(): void {
-    this.inscriptionForm.markAllAsTouched();
-    if (this.inscriptionForm.valid) {
-      this.chargementEnCours = true;
-      this.userService
-        .createUser(this.inscriptionForm.value)
-        .pipe(
-          catchError((error: HttpErrorResponse) => {
-            this.inscriptionError = error.error;
-            this.chargementEnCours = false;
-            return EMPTY;
-          }),
-          tap((res: Partial<User>) => {
-            if (res) {
-              const inscriptionSuccess: InscriptionSuccess = {
-                succes: 'Inscription réussie',
-                name: this.inscriptionForm.value.firstName,
-                email: this.inscriptionForm.value.email,
-              };
-              this.successService.setInscriptionData(inscriptionSuccess);
-              this.router.navigate(['/connexion']);
-            }
-          })
-        )
-        .subscribe();
-    }
-  }
-
-  public getUsers$(): Observable<User[]> {
-    return this.userService.getUsers();
-  }
 
   public nextStep(): void {
     console.log('Étape actuelle :', this.stepInscription);
@@ -140,26 +117,20 @@ export class InscriptionComponent {
     if (this.stepInscription < 4) {
       this.stepInscription++;
     }
+    if (this.stepInscription == 4){
+      // Redirection vers une autre page une fois les étapes terminées
+      //this.router.navigate(['/connexion']); // Remplacez 'votre-page-cible' par la route réelle
+    }
   }
 
   // Méthode pour gérer l'étape précédente
   backStep() {
     if (this.stepInscription === 1) {
       // Si on est à l'étape 1, rediriger vers la page de connexion
-      this.router.navigate(['/se_connecter']); // Remplacez '/se_connecter' par le chemin réel de votre page de connexion
+      //this.router.navigate(['/se_connecter']); // Remplacez '/se_connecter' par le chemin réel de votre page de connexion
     } else {
       // Si on n'est pas à l'étape 1, simplement réduire l'étape
       this.stepInscription--;
     }
   }
-
-  public onTermsChange(): void {
-    this.acceptTerms = !this.acceptTerms;
-    console.log('Accept Terms:', this.acceptTerms);
-  }
-  
-  
-
 }
-
-

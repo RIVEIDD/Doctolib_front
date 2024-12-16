@@ -1,0 +1,31 @@
+<div class="header">
+    <div class="title">
+      <img
+        [routerLink]="['/']"
+        routerLinkActive="router-link-active"
+        class="logo"
+        src="../../../assets/f35a8b925b7443e209a9.svg"
+        alt="Logo"
+        style="width: 100px; height: auto;"
+      />
+    </div>
+  
+    <!-- Section utilisateur connecté -->
+    <div class="user-info" *ngIf="user">
+      <span class="user-name" (click)="toggleDropdown()">
+        
+        @if (user) {
+        {{ user.firstName }} {{ user.lastName }}
+        
+        }
+        <i class="chevron" [ngClass]="{ 'open': isDropdownOpen }">▼</i>
+      </span>
+  
+      <!-- Menu déroulant -->
+      <div class="dropdown-menu" *ngIf="isDropdownOpen">
+        <button class="dropdown-item" (click)="goToProfile()">Mon profil</button>
+        <button class="dropdown-item" (click)="logout()">Se déconnecter</button>
+      </div>
+    </div>
+  </div>
+  
