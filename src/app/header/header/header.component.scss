@@ -80,8 +80,11 @@
   padding: 10px; /* Espacement intérieur */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre */
   z-index: 10; /* S'assurer que le rectangle est au-dessus des autres éléments */
-  top: 50px; /* Ajustez la position selon vos besoins */
-  left: 650px; /* Ajustez la position selon vos besoins */
+
+  /* Positionnement relatif à l'élément parent */
+  top: calc(100% + 10px); /* Positionne sous le bouton (avec un espace de 10px) */
+  left: 50%;
+  // transform: translateX(-50%); /* Centre horizontalement */
   height: 175px;
   width: 625px
   // display: flex; /* Utilisation de Flexbox pour aligner l'icône et le texte */

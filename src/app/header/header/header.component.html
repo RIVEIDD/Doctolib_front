@@ -13,10 +13,16 @@
   <div class="buttons">
     @for (item of boutonsHeader; track $index) {
       <a
+        *ngIf="item.name !== 'Centre d\'aide'"
         class="button {{ item.isDark ? 'b-2' : 'b-1'}}"
         [routerLink]="item.url"
-        (click)="item.name === 'Centre d\'aide' ? toggleHelpCenter() : null" 
       >{{ item.name }}</a>
+      <a
+        *ngIf="item.name === 'Centre d\'aide'"
+        class="button {{ item.isDark ? 'b-2' : 'b-1'}}"
+        (click)="toggleHelpCenter()"
+      >{{ item.name }}</a>
+
       @if (item.name === 'Centre d\'aide' && showHelpCenter) { <!-- Rectangle d'aide conditionnel -->
         <div class="help-center">
           <span class="help-icon">

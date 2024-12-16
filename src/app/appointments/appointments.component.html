@@ -1,0 +1,27 @@
+<div class="appointments-container">
+    
+    <div class="appointment-side-panel">
+        @for (item of boutonsAppointments; track $index) {
+          <div
+            class="button"
+            (click)="item.name === 'VOIR MES RENDEZ-VOUS PASSÉS' ? togglePreviewsAppointments() : null" 
+          >{{ item.name }}</div>
+          @if (item.name === 'VOIR MES RENDEZ-VOUS PASSÉS' && showPreviewsAppointments) { <!-- Rectangle d'aide conditionnel -->
+            <div class="previous-appointments">
+              <p> Questions fréquentes</p>
+              <p> RDV du 3 mars avec DUJARDIN Jean alias OSS117</p>
+              
+    
+            </div>
+          }
+          
+        }
+    </div>
+    <div class="appointment-booking">
+      <img src="../../../assets/planning.png" alt="planning" class="appointment-icon"  />
+      <h2>Aucun rendez-vous à venir</h2>
+      <p>Prenez votre santé en main. Réservez facilement votre prochain rendez-vous sur Doctolib.</p>
+      <button class="home-button" (click)="goToHome()">PRENDRE RENDEZ-VOU</button>
+    </div>
+    
+</div>

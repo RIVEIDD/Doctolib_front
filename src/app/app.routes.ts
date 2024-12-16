@@ -6,6 +6,7 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { SeConnecterComponent } from './se-connecter/se-connecter.component';
+import { AppointmentsComponent } from './appointments/appointments.component';
 
 
 export const routes: Routes = [
@@ -14,6 +15,8 @@ export const routes: Routes = [
   { path: 'connexion', component: ConnexionComponent },
   { path: 'inscription', component: InscriptionComponent },
   { path: 'se_connecter', component: SeConnecterComponent },
+  { path: 'appointments', component: AppointmentsComponent },
+  { path: '', component: SeConnecterComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: '**', component: PageNotFoundComponent },
 ];

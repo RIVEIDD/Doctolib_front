@@ -107,6 +107,10 @@ export class InscriptionComponent {
     const emailControl = this.inscriptionForm.get('email');
     return emailControl?.valid && emailControl?.touched ? true : false;
   }
+
+  public getEmail(): string{
+    return this.inscriptionForm.get('email')?.value || ''; // retourne une chaîne vide si non défini
+  }
   
   
   

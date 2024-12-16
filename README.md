@@ -25,3 +25,11 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+
+à voir prochain cours : centre d'aide qui ramène à page d'acceuil
+inscript étape 2 :
+    quand écriture char 2, tout s'éfface 
+    alignement mail et icon 
+changement du header quand connecté 

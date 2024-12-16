@@ -56,7 +56,7 @@
     input[type="password"] {
       margin-bottom: 1.2rem; // Espace sous les zones
       padding: 0.8rem;
-      border: 1px solid #ccc;
+      border: 1px solid #030ff5;
       border-radius: 5px;
       font-size: 1rem;
       width: 100%; /* Occupe presque toute la largeur */
@@ -144,6 +144,37 @@
     }
   }
 
+  .content-container {
+    display: flex; /* Utilise Flexbox pour aligner les éléments horizontalement */
+    align-items: center; /* Centre verticalement l'image et le texte */
+    // gap: 20px; /* Ajoute un espacement entre l'image et le texte */
+    // margin: 20px;
+    
+    .image-container {
+      // text-align: left; /* Centre l'image horizontalement */
+      // margin: 20px 0;
+      // float:left;
+      margin-left: 0%;
+    
+      img {
+        width: 5%; /* Adapte l'image à 100% de la largeur du conteneur */
+        max-width: 300px; /* Limite la largeur maximale */
+        background-color: #d8cece;
+        border-radius: 1px; /* Ajoute des bords arrondis */
+        display: block;
+        margin-left: 0%;
+      }
+    }
+    .text-container{
+      p{
+        margin: 0;
+      }
+    }
+  }
+
+  
+  
+
   .gender-selection {
     display: flex;
     gap: 2rem; // Espace entre les options
@@ -156,10 +187,10 @@
       justify-content: center;
       cursor: pointer;
       padding: 0.5rem 1rem;
-      border: 2px solid #ccc;
+      border: 2px solid #030ff5;
       border-radius: 5px;
       text-align: center;
-      background-color: #f9f9f9;
+      background-color: #ffffff;
       transition: all 0.3s ease;
       position: relative;
       width: 150px; // Taille des rectangles

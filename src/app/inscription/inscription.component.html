@@ -1,3 +1,4 @@
+
 <div class="inscription-container">
   @if (inscriptionError) {
     <div @slideFromTop class="warning-box error">
@@ -39,9 +40,17 @@
   </div>
   
   
-  
+  <!-- <a href="https://www.flaticon.com/free-icons/account" title="account icons">Account icons created by Shashank Singh - Flaticon</a> -->
 
     <div *ngIf="stepInscription === 2">
+      <div class="content-container">
+        <div class="image-container">
+          <img src="../../../assets/people.png"/>
+        </div>
+        <p>{{ getEmail() }}</p>
+      </div>
+      <h2>Renseignez votre identité</h2>
+      <h4>Identité</h4>
       <div class="gender-selection">
         <label class="gender-option">
           <input type="radio" name="gender" [value]="'Homme'" formControlName="gender" />
@@ -78,7 +87,9 @@
             <i *ngIf="isValidField('lastName')" class="fas fa-check"></i>  <!-- Coche verte -->
           </div>
         </div>
-        
+      </div>
+      <h4>Date de naissance</h4>
+      <div class="input-container_text">
         <div class="input-wrapper">
           <input
             [ngClass]=""
@@ -95,12 +106,14 @@
 
 
     <div *ngIf="stepInscription === 3">
-      <input
-        [ngClass]="{ invalid: isInvalidField('password') }"
-        placeholder="Mot de passe"
-        type="password"
-        formControlName="password"
-      />
+      <div class="input-wrapper">
+        <input
+          [ngClass]="{ invalid: isInvalidField('password') }"
+          placeholder="Mot de passe"
+          type="password"
+          formControlName="password"
+        />
+      </div>
       
     </div>
     <div class="progress-bar">

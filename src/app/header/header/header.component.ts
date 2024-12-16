@@ -3,6 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { tap } from 'rxjs';
 import { UserService } from '../../services/user.service';
+import { CommonModule } from '@angular/common';
 
 export interface boutonHeader {
   id: number;
@@ -14,7 +15,7 @@ export interface boutonHeader {
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
