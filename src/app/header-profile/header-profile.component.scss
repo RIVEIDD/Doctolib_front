@@ -142,6 +142,7 @@
       margin-right: 10px;
       display: flex;
       align-items: center;
+      color:  white;
 
       .chevron {
         margin-left: 5px;
@@ -178,4 +179,19 @@
         }
       }
     }
+
+    #mes-rendez-vous {
+      background-color: rgb(41, 109, 204);
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    #mes-rendez-vous:hover {
+      background-color: rgb(30, 80, 150);
+    }
+    
   }

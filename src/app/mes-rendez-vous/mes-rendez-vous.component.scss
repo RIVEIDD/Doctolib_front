@@ -1,0 +1,70 @@
+.appointments-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(241, 247, 254);
+    padding-top: 65px;
+  
+    gap: 1rem;
+    .appointment-side-panel{
+      position: fixed;
+      left: 0;
+      height: 100%;
+      width: 25%;
+      display: flex;
+      flex-direction: column;
+      padding-top: 2rem;
+      align-items: center;
+      .button{
+        font-weight: bolder;
+        color: rgb(14,122,202);
+        opacity: 0.7;
+        cursor: pointer;
+        &:hover{
+          opacity: 1;
+        }
+      }
+      .previous-appointments{
+        background-color: (241, 247, 254); /* Couleur de fond */
+        border: 0px solid (241, 247, 254); /* Bordure */
+        padding: 10px; /* Espacement intérieur */
+        //box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre */
+        height: 175px;
+        width: 90%
+      }
+      
+    }
+    
+    .appointment-booking{
+      padding-top: 20rem;
+      position: fixed;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding-top: 2rem;
+      align-items: center;
+      .home-button{
+        font-weight: bolder;
+        color: white;
+        background-color: rgb(14,122,202);
+        cursor: pointer;
+        &:hover{
+          background-color: #0056b3;
+        }
+      }
+    }
+      
+   
+  }
+  
+  .appointment-icon {
+    padding-top: 13rem;
+    height: 75px;
+    width: 75px
+    
+  }
+  
+  

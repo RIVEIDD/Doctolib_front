@@ -22,6 +22,8 @@ export interface boutonHeader {
 })
 export class HeaderProfileComponent implements OnInit {
 
+  isHelpCenterVisible: boolean = false; // Gère l'affichage du centre d'aide
+
   @Output() public isOpenEmitter = new EventEmitter<boolean>();
 
   public isOpen: boolean = false;
@@ -65,8 +67,8 @@ export class HeaderProfileComponent implements OnInit {
   }
 
 
-  public toggleHelpCenter(): void { // Méthode pour basculer l'affichage du rectangle
-    this.showHelpCenter = !this.showHelpCenter;
+  public toggleHelpceter(): void {
+    this.isHelpCenterVisible = !this.isHelpCenterVisible;
   }
 
     // Basculer le menu déroulant
@@ -86,4 +88,6 @@ export class HeaderProfileComponent implements OnInit {
       this.authService.logout(); // Méthode fictive, à implémenter dans AuthService
       this.router.navigate(['/home']);
     }
+
+    
 }
