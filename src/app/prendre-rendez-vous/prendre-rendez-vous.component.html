@@ -1,0 +1,12 @@
+<div *ngIf="doctors.length > 0" class="results">
+  <h2>Résultats :</h2>
+  <ul>
+    <ng-container *ngFor="let doctor of doctors">
+      <li *ngIf="doctorId && doctor.id.toString() === doctorId">
+        <strong>{{ doctor.firstName }} {{ doctor.lastName }}</strong> -
+        {{ doctor.specialty }} à {{ doctor.city }}
+        {{ doctor.address }} {{ doctor.postalCode }}
+      </li>
+    </ng-container>
+  </ul>
+</div>

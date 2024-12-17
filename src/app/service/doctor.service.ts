@@ -22,4 +22,10 @@ export class DoctorService {
 
     return this.http.get<any[]>(this.apiUrl, { params });
   }
+
+  searchDoctorsbyId(id: string): Observable<any> {
+    let params = new HttpParams();
+    params = params.set('id', id);
+    return this.http.get<any[]>(this.apiUrl, { params });
+  }
 }

@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { SeConnecterComponent } from './se-connecter/se-connecter.component';
 import { HomeProfileComponent } from './home-profile/home-profile.component';
 import { MesRendezVousComponent } from './mes-rendez-vous/mes-rendez-vous.component';
+import { PrendreRendezVousComponent } from './prendre-rendez-vous/prendre-rendez-vous.component';
 
 export const routes: Routes = [
     //{ path: '', redirectTo: 'signin', pathMatch: 'full' },
@@ -23,5 +24,6 @@ export const routes: Routes = [
     { path: 'se_connecter', component: SeConnecterComponent, canActivate: [AnonymousGuard] },
     { path: 'inscription', component: InscriptionComponent, canActivate: [AnonymousGuard] },
     { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },
-    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] }
+    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+    { path: 'prendre-rendez-vous/:id', component: PrendreRendezVousComponent }
 ];
