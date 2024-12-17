@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'; // Ajout ici
 import { CommonModule } from '@angular/common';
 import { UserService } from '../services/user.service';
+import { DoctorService } from '../service/doctor.service';
 
 @Component({
   selector: 'app-search-zone',
@@ -18,25 +19,16 @@ export class SearchZoneComponent {
   specialty: string = '';
   doctors: any[] = []; // Stocke les résultats
 
-  constructor(private http: HttpClient,private userService: UserService) {}
+  constructor(private http: HttpClient,private userService: UserService,private doctorService: DoctorService) {}
 
   searchDoctors() {
-    // Construire les paramètres de requête
-    const params: any = {};
-    if (this.city) {
-      params.city = this.city;
-    }
-    if (this.specialty) {
-      params.specialty = this.specialty;
-    }
-
-    // Effectuer une requête GET vers le back-end
-    this.http.get('http://localhost:3000/doctors/search', { params }).subscribe(
-      (response: any) => {
-        this.doctors = response; // Stocker les résultats
+    this.doctorService.searchDoctors(this.specialty, this.city).subscribe(
+      (response) => {
+        console.log('Données reçues :', response);
+        this.doctors = response;
       },
       (error) => {
-        console.error('Erreur lors de la recherche de médecins :', error);
+        console.error('Erreur lors de la recherche de médecins', error);
       }
     );
   }
