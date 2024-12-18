@@ -82,5 +82,98 @@
       width: 500px; // Optionnel : largeur de l'image
       height: auto; // Conserve le ratio d'aspect de l'image
     }
+    
   }
   
+
+/* Conteneur principal */
+.results {
+  padding: 1rem;
+}
+
+/* Liste des cartes */
+.doctor-list {
+  list-style: none;
+  padding: 0;
+}
+
+/* Carte médecin */
+.doctor-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  border: 1px solid #dce1e6;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  max-width: 1000px;
+}
+
+/* Informations médecin (partie gauche) */
+.doctor-info {
+  display: flex;
+  gap: 1rem;
+}
+
+.doctor-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgb(14, 122, 202);
+}
+
+.doctor-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.doctor-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: rgb(14, 122, 202);
+  margin: 0;
+}
+
+.doctor-specialty,
+.doctor-address {
+  margin: 0.2rem 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.appointment-button {
+  margin-top: 0.5rem;
+  margin-right: 1rem;
+  background-color: rgb(14, 122, 202);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
+
+.appointment-button:hover {
+  background-color: #0056b3;
+}
+
+/* Calendrier ou message (partie droite) */
+.doctor-calendar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  background-color: #f8f9fa;
+  border-left: 1px solid #dce1e6;
+  flex: 1;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+}

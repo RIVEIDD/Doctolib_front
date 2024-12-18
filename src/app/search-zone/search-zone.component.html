@@ -1,23 +1,3 @@
-<!--
-<div>
-  <input
-    type="text"
-    [(ngModel)]="searchUser"
-    placeholder="Rechercher par firstNname"
-  />
-  <button (click)="searchUser()">Rechercher</button>
-</div>
-
-<div *ngIf="searchedUser">
-  <h3>Résultat de la recherche :</h3>
-  <p>ID : {{ searchedUser.id }}</p>
-  <p>Nom d'utilisateur : {{ searchedUser.firstName }}</p>
-</div>
-
--->
-
-
-
 <div class="searchzone">
   <img src="/assets/ba6eda4b0cc3e6b3632d.webp" alt="" class="image" />
   <h1>Vivez en meilleure santé</h1>
@@ -40,33 +20,41 @@
   </div>
 </div>
 
-<div *ngIf="doctors.length > 0" class="results">
-  <h2>Résultats :</h2>
-  <ul>
+<<div *ngIf="doctors.length > 0" class="results">
+  <ul class="doctor-list">
     <ng-container *ngFor="let doctor of doctors">
       <li
+        class="doctor-card"
         *ngIf="
           (city === '' || doctor.city.toLowerCase().includes(city.toLowerCase())) &&
-          (specialty === '' ||
-            doctor.specialty.toLowerCase().includes(specialty.toLowerCase()))
+          (specialty === '' || doctor.specialty.toLowerCase().includes(specialty.toLowerCase()))
         "
       >
-        <strong>{{ doctor.firstName }} {{ doctor.lastName }}</strong> -
-        {{ doctor.specialty }} à {{ doctor.city }}
-
-        <!-- Bouton pour rediriger vers la page "prendre-rendez-vous" -->
-        <button
-          class="appointment-button"
-          [routerLink]="['/prendre-rendez-vous', doctor.id]"
-        >
-          Prendre rendez-vous
-        </button>
+        <!-- Partie gauche : Informations médecin -->
+        <div class="doctor-info">
+          <img
+            src="/assets/doctor-placeholder.jpg"
+            alt="Photo du médecin"
+            class="doctor-photo"
+          />
+          <div class="doctor-details">
+            <h3 class="doctor-name">{{ doctor.firstName }} {{ doctor.lastName }}</h3>
+            <p class="doctor-specialty">Médecin {{ doctor.specialty }}</p>
+            <p class="doctor-address">{{ doctor.address }}</p>
+            <p>{{ doctor.postalCode }} {{ doctor.city }}</p>
+            <button
+              class="appointment-button"
+              [routerLink]="['/prendre-rendez-vous', doctor.id]"
+            >
+              Prendre rendez-vous
+            </button>
+          </div>
+        </div>
+        <!-- Partie droite : Message ou calendrier -->
+        <div class="doctor-calendar">
+          <p>Ce soignant réserve la prise de rendez-vous en ligne aux patients déjà suivis.</p>
+        </div>
       </li>
     </ng-container>
   </ul>
 </div>
-
-<div *ngIf="doctors.length === 0" class="no-results">
-  <p>Aucun médecin trouvé pour votre recherche.</p>
-</div>
-
