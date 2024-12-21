@@ -1,67 +1,37 @@
-
-@if (updateSuccess) {
-  <app-alert
-    [title]="'Registration'"
-    [message]="'Profile updated successfully'"
-  ></app-alert>
-}
-
-
 <div class="main-container">
+  <!-- Section Profil -->
   <div class="profile-container">
-    <div class="profile-picture">
-      @if (user) {
-        <h1>{{ user.firstName[0] }}{{ user.lastName[0] }}</h1>
-      }
-    </div>
-
-    <h1>My profile</h1>
-
-    <form [formGroup]="profileForm" class="profile-form">
-
-      <div class="general-input-group">
-
-        <div class="div-general-input-group">
-          <h3 class="input-name">First name</h3>
-          <input id="firstName" formControlName="firstName" type="text" class="profile-input"/>
-        </div>
-
-
-        <div class="div-general-input-group">
-          <h3 class="input-name">Last name</h3>
-          <input id="lastName" formControlName="lastName" type="text" class="profile-input"/>
-        </div>
-
-    
-        <div class="div-general-input-group">
-          <h3 class="input-name">Email</h3>
-          <input id="email" formControlName="email" type="text" class="profile-input"/>
-        </div>
-      </div>
-
-    </form>
-
-
-    <div class="row gap-1">
-      <button (click)="backHome()">Back home</button>
-      <button (click)="updateProfile()" class="btn-1">Update profile</button>
+    <h2>Identité</h2>
+    <div class="profile-item">
+      <span>Mon profil</span>
+      <span>{{ user.firstName }} {{ user.lastName }}</span>
     </div>
   </div>
+
+  <!-- Formulaire d'édition -->
+  <h2>Modification du profil</h2>
+  <form [formGroup]="profileForm" class="profile-form">
+    <div class="general-input-group">
+      <div class="div-general-input-group">
+        <label for="firstName" class="input-name">Prénom</label>
+        <input id="firstName" formControlName="firstName" type="text" class="profile-input" />
+      </div>
+
+      <div class="div-general-input-group">
+        <label for="lastName" class="input-name">Nom</label>
+        <input id="lastName" formControlName="lastName" type="text" class="profile-input" />
+      </div>
+
+      <div class="div-general-input-group">
+        <label for="email" class="input-name">Email</label>
+        <input id="email" formControlName="email" type="text" class="profile-input" />
+      </div>
+    </div>
+  </form>
+
+  <!-- Boutons d'actions -->
+  <div class="action-buttons">
+    <button (click)="backHome()" class="btn-secondary">Retour</button>
+    <button (click)="updateProfile()" class="btn-primary">Mettre à jour le profil</button>
+  </div>
 </div>
-
-
-
-<!--
-
-<div class="search-container">
-  <input type="text" [(ngModel)]="searchTerm" placeholder="Rechercher un utilisateur par prénom" />
-  <button (click)="searchUser()">Rechercher</button>
-</div>
-
-<div *ngIf="user">
-  <h2>Profil de l'utilisateur</h2>
-  <p><strong>Nom : </strong>{{ user.firstName }} {{ user.lastName }}</p>
-  <p><strong>Email : </strong>{{ user.email }}</p>
-</div>
-
--->
